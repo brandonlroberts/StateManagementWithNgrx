@@ -1,25 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+
+import { CustomerReducer } from './state/customer/customer.reducer';
+import { CustomersViewComponent } from './customers-view/customers-view.component';
+import { CustomerAddComponent } from './customer-add/customer-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomersViewComponent,
+    CustomerAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    })
+    StoreModule.forRoot({ customers: CustomerReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
